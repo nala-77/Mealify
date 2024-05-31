@@ -135,6 +135,7 @@ h1 {
 
 .navbar-items {
   justify-content: center;
+  align-items: baseline;
 }
 
 .navbar-items li {
@@ -169,12 +170,12 @@ h1 {
 }
 
 .navbar-items .nav-item:hover a,
-.navbar-items .nav-item a:active {
+.navbar-items .nav-item a.active {
   color: var(--black);
 }
 
 .navbar-items .nav-item:hover a::after,
-.navbar-items .nav-item a:active:after {
+.navbar-items .nav-item a.active:after {
   width: 100%;
 }
 .nav-icons img {

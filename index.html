@@ -24,7 +24,7 @@
                 <h1 class="htitle">Mealify</h1>
                 <div>
                     <ul class="navbar-items nav-contact flex">
-                        <li class="nav-item"><a href="#home">Home</a></li>
+                        <li class="nav-item"><a href="#home" class="active">Home</a></li>
                         <li class="nav-item"><a href="#chefs">Chefs</a></li>
                         <li class="nav-item"><a href="#gallery">Gallery</a></li>
                         <li class="nav-item"><a href="#contact">contact</a></li>
@@ -32,19 +32,18 @@
                 </div>
                 <div>
                     <ul class="navbar-items nav-icons flex">
-                        <li><img src="./assets/images/dark theme icon/moon.png"
-                                alt="moon" id="icon" class="height"></li>
+                        <li><i id="icon" class="fa-solid fa-moon"></i></li>
 
                         <li class="slide-icon">
                             <ul id="mySidenav" class="sidenav">
                                 <a href="javascript:void(0)" class="closebtn"
                                     onclick="closeNav()">&times;</a>
-                                <a href="#home">Home</a>
-                                <a href="#chefs">chefs</a>
-                                <a href="#gallery">gallery</a>
-                                <a href="#contact">Contact</a>
+                                <a href="#home" onclick="closeNav()">Home</a>
+                                <a href="#chefs" onclick="closeNav()">chefs</a>
+                                <a href="#gallery" onclick="closeNav()">gallery</a>
+                                <a href="#contact" onclick="closeNav()">Contact</a>
                             </ul>
-                            <i class="bars fa-solid fa-bars height"
+                            <i class="bars fa-solid fa-bars"
                                 onclick="openNav()"></i>
                         </li>
                     </ul>
@@ -440,16 +439,37 @@
                     icon.src = "./assets/images/dark theme icon/moon.png";
                 }
             }
-
-            /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
             function openNav() {
                 document.getElementById("mySidenav").style.width = "250px";
 }
-
-            /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
             function closeNav() {
                 document.getElementById("mySidenav").style.width = "0";
 }
+            // nav-bar-items-active
+            var navbarItems = document.querySelector(".navbar-items ");
+
+            var a = navbarItems.querySelectorAll("a");
+
+            for (var i = 0; i < a.length; i++) {
+            a[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace("active", "");
+                this.className += "active";
+            });
+            }
+
+            // dark-theme-icon
+            var icon = document.getElementById('icon');
+            icon.addEventListener("click", function () {
+                if (icon.classList.contains("fa-moon")) {
+                    icon.classList.replace("fa-moon","fa-sun")
+                    icon.style.color = "white"
+                }
+                else if (icon.classList.contains("fa-sun")) {
+                    icon.classList.replace("fa-sun", "fa-moon")
+                    icon.style.color = "black"
+                }
+            });
         </script>
     </body>
 </html>
