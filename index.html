@@ -52,7 +52,7 @@
             <!-- End of navbar -->
 
             <!-- Start of hero -->
-            <div id="home" class="hero flex container">
+            <div id="home" class="hero flex container forScroll">
                 
                 <div class="hero-img">
                     <img src="./assets/images/hero-img.png"
@@ -87,7 +87,7 @@
         <!-- Start of main -->
         <main>
             <!-- Start of chefs section -->
-            <section id="chefs" class="chefs-section pd-y">
+            <section id="chefs" class="chefs-section pd-y forScroll">
                 <div class="section-title flex">
                     <h2 class="section-header">chefs</h2>
                     <p class="primary-font section-desc">Our <span
@@ -202,7 +202,7 @@
             <!-- End of chefs section -->
 
             <!-- Start of gallery section -->
-            <section id="gallery" class="gallery-section pd-y">
+            <section id="gallery" class="gallery-section pd-y forScroll">
                 <div class="section-title flex">
                     <h2 class="section-header">gallery</h2>
                     <p class="primary-font section-desc">Check
@@ -272,7 +272,7 @@
             </section>
             <!-- End of gallery section -->
             <!-- Start of contact section -->
-            <section id="contact" class="contact-section pd-y">
+            <section id="contact" class="contact-section pd-y forScroll">
                 <div class="section-title flex">
                     <h2 class="section-header">contact</h2>
                     <p class="primary-font section-desc">need help ?
@@ -445,18 +445,26 @@
             function closeNav() {
                 document.getElementById("mySidenav").style.width = "0";
 }
-            // nav-bar-items-active
+            // nav-bar-items-active-onscrolling
             var navbarItems = document.querySelector(".navbar-items ");
 
             var a = navbarItems.querySelectorAll("a");
+            const forScroll = document.querySelectorAll('.forScroll')
+            let currentSection = 'home'
+            window.addEventListener('scroll', () => {
+                forScroll.forEach(s => {
+                    if (window.scrollY >= (s.offsetTop - 100)) {
+                        currentSection = s.id
+                    }
+                })
+                a.forEach(link => {
+                    if (link.href.includes(currentSection)) {
+                        document.querySelector('.active').classList.remove('active')
+                        link.classList.add('active')
+                    }
+                })
+            })
 
-            for (var i = 0; i < a.length; i++) {
-            a[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace("active", "");
-                this.className += "active";
-            });
-            }
 
             // dark-theme-icon
             var icon = document.getElementById('icon');
